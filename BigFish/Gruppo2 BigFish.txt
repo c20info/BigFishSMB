@@ -1,0 +1,35 @@
+Gruppo 2, composto da Barucci Filippo, Mercadante Mattia, Scaglietti Matteo.
+
+Il programma è stato scritto in parte dai singoli partecipanti(come per le classi Label, TextBox, Coord...)
+e in parte da tutti e tre come gruppo (come per le classi Main, Animal, Predator e Prey, che essendo le classi più importanti del programma,
+abbiamo ritenuto fosse necessario, e anche più corretto, scriverle insieme).
+
+Per scrivere il programma ci abbiamo messo circa 15 ore durante i pomeriggi, le ore assegnateci dai docenti e durante la notte,
+per comunicare abbiamo usato la piattaforma Google Meet, usando i nostri profili personali, in questo modo potevamo presentare il programma ma comunicare e decidere insieme come procedere. 
+
+La parte svilppate da me sono la classe Window, Coord e Timer.
+
+la classe Window è una classe che estende JFrame ed è stata creata principalmente per due motivi:
+semplificare il Main, poichè molti metodi richiamati nel costruttore di Window si sarebbero dovuti richiamare nel Main e sarebbe stato poco chiaro e brutto da vedere.
+poter includere in modo più semplici i metodi resize e setBackground che se avrei dovuto inserire nel Main rendendo, ancora, il programma più complicato e meno elegante.
+Questa classe contiene, oltre al costruttore che prende per parametri i valori del titolo della finestra, la grandezza e il colore dello sfondo della stessa, il metodo 
+setBackground (il primo che prende per parametro una Stringa con il percorso dell'immagine e il secondo che prende per parametro un colore) che ha la funzione di cambiare rispettivamente
+l'immagine di sfondo del Background o il colore dello stesso; il metodo getDimensions che resituisce una variabile di tipo Coordinata(spiegata in seguito) contenente
+le dimensioni della finestra, questa funzione ha come particolarità la gestione delle costanti dichiarate nel Main: HORIZONTAL_SHIFT e VERTICAL_SHIFT che rappresentano uno sfasamento 
+di varie decine di pixel che bisogna calcolare per ottenere le misure corrette della finestra; E infine il metodo resize che prende per parametro una variabile di tipo Coordinata e 
+ridimensiona la finestra in base al valore inserito.
+
+La classe Coord serve a gestire tutte le Coordinate che ci sono nel programma (che essendo un programma "basato" sulla grafica, sono fondamentali), questa contiene semplicemente
+due attributi di tipo int (ho optato per metterli publici perchè sarebbe stato una fatica inutile metterli private e usare i getter e i setter visto che non dava alcun tipo di vantaggio):
+x e y. Ci sono due costruttori: il primo prende due int per parametro e li assegna alle variabili x e y, questo viene usato quando la variabile di tipo Coord che si sta andando a creare 
+è predefinita, il secondo non prende parametri e genera le due coordinate casualmente a patto che, ovviamente, siano all'interno della finestra, questo viene invece usato nel caso in cui
+si voglia creare una coordinata ma non sia importante che sia una predefinita. l'ultimo metodo è distance che serve a calcolare la distanza fra l'oggetto che richiama questo metodo e
+l'oggetto inserito come parametro all'interno di questa funzione viene calcolata la distanza fra i due punti usando il teorema di Pitagora e viene restituto il valore di tipo double ottenuto.
+questa classe è stata usata varie volte per indicare una dimensione, anche se il nome suggerisce che debba essere usata come coordinata, tuttavia risulta particolarmente comodo usarla per 
+immagazzinare numeri che rappresentano una dimensione (size.x --> width e size.y --> height).
+
+La classe Timer è una classe che estende Thread ed è l'unica classe che lavora con essi in quanto l'utilizzo dei Thread era facoltativo, ha due attributi: time (private int) 
+e triggered (public boolean) che rappresentano rispettivamente il tempo in millisecondi che il timer deve attendere e questo è scaduto o no.
+Questa classe ha due costuttori: il primo prende per parametro un int che serve a inizializzare time, e che imposta triggered a false di default, e il secondo che prende per parametro
+un altro Timer ed è un costruttore di copia. Contiene inoltre il getter di time che essendo una variabile privata ne richiede uno e ha infine, ovviamente, essendo una classe che estende
+Thread, l'Override del metodo run che aspetta per "time" millisecondi e poi, rende vera la variabile triggered, in modo che anche da "fuori" si possa vedere che il timer è scaduto.
